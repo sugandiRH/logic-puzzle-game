@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Math Adventure - Choose Level</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .float { animation: float 3s ease-in-out infinite; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .fade-in { animation: fadeIn 0.8s ease-in-out forwards; }
+
+    .level-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+
+<body class="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-yellow-200 via-pink-200 to-blue-200 fade-in">
+
+  <!-- Title -->
+  <h1 class="text-5xl md:text-6xl font-extrabold text-purple-700 mb-6 drop-shadow-lg">
+    🧮 Math Adventure!
+  </h1>
+
+  <!-- Welcome Player -->
+  <p id="welcomePlayer" class="text-xl font-semibold text-purple-700 mb-10">
+    Welcome back, player! ✨
+  </p>
+
+  <!-- Floating Icon -->
+  <div class="float text-7xl mb-10">🎲</div>
+
+  <!-- Level Buttons -->
+  <div class="flex flex-col md:flex-row gap-6">
+    <!-- Beginner -->
+    <button 
+      class="level-btn bg-green-400 text-white font-bold py-6 px-10 rounded-3xl text-2xl shadow-lg transition-all"
+      onclick="selectLevel('beginner')">
+      🟢 Beginner
+    </button>
+
+    <!-- Middle -->
+    <button 
+      class="level-btn bg-yellow-400 text-white font-bold py-6 px-10 rounded-3xl text-2xl shadow-lg transition-all"
+      onclick="selectLevel('middle')">
+      🟡 Middle
+    </button>
+
+    <!-- Hard -->
+    <button 
+      class="level-btn bg-red-400 text-white font-bold py-6 px-10 rounded-3xl text-2xl shadow-lg transition-all"
+      onclick="selectLevel('hard')">
+      🔴 Hard
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <p class="mt-10 text-purple-700 font-medium text-center">
+    Choose your challenge level and start the fun! 🚀
+  </p>
+
+  <!-- Script -->
+  <script>
+    // Get player name from localStorage
+    const playerName = localStorage.getItem("playerName");
+    const welcomeText = document.getElementById("welcomePlayer");
+
+    if (playerName) {
+      welcomeText.textContent = `Welcome back, ${playerName}! ✨`;
+    }
+
+    // Handle level selection
+    function selectLevel(level) {
+      localStorage.setItem("gameLevel", level);
+      // Redirect to that level’s page (replace with your actual file names)
+      if (level === "beginner") {
+        window.location.href = "beginner.html";
+      } else if (level === "middle") {
+        window.location.href = "middle.html";
+      } else {
+        window.location.href = "hard.html";
+      }
+    }
+  </script>
+
+</body>
+</html>
