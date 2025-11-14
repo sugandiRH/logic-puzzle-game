@@ -10,8 +10,16 @@
 </head>
 <body>
     <div class="wrapper">
-        <form action="">
-            <h1>Login</h1>
+        <form action="register_process.php" method="POST">
+            <h1>Welcome Buddy</h1>
+
+            <?php 
+            if(isset($_SESSION['reg_error'])){
+                echo "<p style='color:red; text-align:center;'>".$_SESSION['reg_error']."</p>";
+                unset($_SESSION['reg_error']);
+            }
+            ?>
+
             <div class="input-box">
                 <input type="text" placeholder="User Name" required>
                 <i class='bx bxs-user'></i>
