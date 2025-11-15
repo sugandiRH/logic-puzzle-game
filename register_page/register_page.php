@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,20 +22,20 @@
             ?>
 
             <div class="input-box">
-                <input type="text" placeholder="User Name" required>
+                <input type="text" placeholder="User Name" required name="username">
                 <i class='bx bxs-user'></i>
             </div>
             <div class="input-box">
-                <input type="number" placeholder="Age" required>
-                <i class='bx bxs-envelope'></i>
-            </div>
-            <div class="input-box">
-                <input type="int" placeholder="Password" required>
+                <input type="number" placeholder="Age" required name="age">
                 <i class='bx bxs-calendar' ></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Confirm Password" required>
-                <i class='bx bxs-envelope'></i>
+                <input type="password" placeholder="Enter Password" required name="password">
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Confirm Password" required name="confirm_password">
+                <i class='bx bxs-lock-alt'></i>
             </div>
 
             <button type="submit" class="btn">Register</button>
