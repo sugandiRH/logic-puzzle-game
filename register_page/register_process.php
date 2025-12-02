@@ -19,7 +19,7 @@ $stmt->bind_param("sis", $username, $age, $hashedPassword);
 
 if ($stmt->execute()) {
     $_SESSION['reg_success'] = "Registration Successful! Please Login.";
-    header("Location: login_page.html");
+    header("Location: register_page.php");
     exit();
 } else {
     $_SESSION['reg_error'] = "Username already exists!";
