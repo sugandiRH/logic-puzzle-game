@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:ital,wght@0,400;0,700;1,300;1,400&family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    background: url('../assent/RegisterPG_image.jpg') no-repeat center center;
+    background-size: cover;
+    background-color: antiquewhite;
+}
+
+.wrapper{
+    width: 420px;
+    padding: 30px;
+    margin-right: 15%;
+    background: transparent;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(40px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    transition: .5s;
+}
+
+.wrapper:hover{
+    border: 5px solid #0FF6C8;
+    box-shadow: 0 0 20px #0FF6C8, inset 0 0 20px #0FF6C8;
+}
+
+.wrapper h1{
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 36px;
+    /* font-weight: 600; */
+    color: #fff;
+    transition: .5s;
+}
+
+.wrapper .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    /* background-color: aquamarine; */
+    margin: 30px 0;
+    transition: .5s;
+}
+
+.input-box input{
+    width: 100%;
+    height: 100%;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 40px;
+    outline: none;
+    padding: 20px 45px 20px 20px;
+    font-size: 16px;
+    background: transparent;
+    color: #fff;
+}
+
+.wrapper .input-box input:hover{
+    border: 2px solid #0FF6C8;
+    box-shadow: 0 0 10px #0FF6C8, inset 0 0 10px #0FF6C8;
+}
+
+.input-box input::placeholder{
+    color: #fff;
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%; 
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #fff;
+    transition: .5s;
+}
+
+.wrapper .input-box:hover i{
+    color: #0FF6C8;
+}
+
+.wrapper .btn{
+    width: 100%;
+    height: 45px;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.wrapper .btn:hover{
+    background-color: #0FF6C8;
+    box-shadow: 0 0 20px #0FF6C8;
+}
+
+.wrapper .login-link{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14.5px;
+    color: #fff;
+}
+
+.login-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link p a:hover{
+    text-decoration: underline;
+}
+
+
+/* use AI */
+.alert-box {
+    background: #ffe5e5;
+    border: 1px solid #ff4d4d;
+    padding: 10px 15px;
+    margin: 10px auto;
+    width: 80%;
+    color: #b30000;
+    position: relative;
+    border-radius: 6px;
+    text-align: center;
+    font-family: Arial;
+}
+
+.close-btn {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.error_msg {
+    color: #ff4d4d;
+    font-size: 11px;
+    margin-top: 5px;
+    margin-left: 5px;
+    text-align: left;
+    padding-bottom: 10px;
+}
