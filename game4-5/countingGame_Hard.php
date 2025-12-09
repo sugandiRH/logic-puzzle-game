@@ -1,3 +1,5 @@
+<?php include '../session_config.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
