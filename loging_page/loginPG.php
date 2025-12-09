@@ -12,6 +12,14 @@
 <body>
     <div class="wrapper">
         <form action="login_process.php" method="POST">
+
+            <!-- timeout massege -->
+            <?php if (isset($_GET['timeout'])): ?>
+                <div class="timeout-msg">
+                    You were logged out due to inactivity.
+                </div>
+            <?php endif; ?>
+
             <h1>Login</h1>
 
             <?php 
