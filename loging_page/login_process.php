@@ -49,7 +49,7 @@ if (mysqli_num_rows($result) == 1) {
         
         $age = $user['age'];
         if ($age < 6) {
-            header("Location: ../gamechoosePG/game(4-5).html");
+            header("Location: ../gamechoosePG/game(4-5).php");
         } else
         header("Location: ");
         
