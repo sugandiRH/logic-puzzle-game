@@ -27,8 +27,13 @@ function updateDisplay(){
 }
 
 
-function checkNum(){
-    let checkNum = document.getElementById('selectNum').value;
-    alert(checkNum);
+function checkNum(num){
+    if(selectedNum === num){
+        alert("Correct! You selected " + selectedNum);
+    } else {
+        alert("Incorrect! You selected " + selectedNum + ", but the correct number is " + num);
+    }
+    // let checkNum = document.getElementById('selectNum').value;
+    // alert(checkNum);
     window.location.reload();
 }
