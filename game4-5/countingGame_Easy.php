@@ -138,7 +138,8 @@
                 <div id="message">
                     <p id="message1"></p>
                     <p id="message2"></p>
-                    
+                    <button onclick=goNextLevel() id="nextBtn">Next Level</button>
+
                 </div>
             </div>
 
@@ -149,6 +150,22 @@
             </div>
         </div>
     </div>
+
+
+    <!-- this is for popup box -->
+     <div class="popup" id ="popup">
+        <div class="overlay"></div>
+        <div class="popup-content">
+            <h2>It's Over!</h2>
+            <p>Do You Wonna Play Again?</p>
+            <img src="../assent/userIcon.jpg" alt="">
+            <div class="button">
+                <button id="replayBtn">Replay</button>
+                <!-- <button id="nextLevelBtn">Next Level</button> -->
+                <button id="backBtn">Back</button>
+            </div>            
+        </div>
+     </div>
 
     <script src="modeChange.js"></script>
     <script src="scriptEasy.js"></script>
