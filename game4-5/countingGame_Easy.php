@@ -15,7 +15,9 @@
     $current_level = 1;
     $image_count = 0;
     $image_path = '';
-    $position = '';
+    $position_1 = '';
+    $position_2 = '';
+    $position_3 = '';
     $item_count = 0;
     
     $sql = "SELECT level from player_level WHERE user_id = $user_id AND game_name = 'counting'";
@@ -31,7 +33,9 @@
     if (mysqli_num_rows($gameResult) == 1) {
         $gameRow = mysqli_fetch_assoc($gameResult);
         $image_path = $gameRow['image_path'];
-        $position = $gameRow['item_position'];
+        $position_1 = $gameRow['position_1'];
+        $position_2 = $gameRow['position_2'];
+        $position_3 = $gameRow['position_3'];
         $item_count = $gameRow['item_count'];
     } 
     else{
@@ -48,14 +52,12 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=favorite" />
-    <!-- <link rel="stylesheet" href="age4-5.css"> -->
-    <link rel="stylesheet" href="gameStyle.css">
+    <link rel="stylesheet" href="age4-5.css">
+    <!-- <link rel="stylesheet" href="gameStyle.css"> -->
     
 </head>
 <body>
-    <div class="title">
-        <h2>Hello, <?php echo $_SESSION['username']; ?>!</h2>
-    </div>
+
     <div class="wrapper">
         <div class="wrap">
 
@@ -75,7 +77,7 @@
                 <div class="number-board">
                     <?php 
                     
-                        $numList= array(1,$item_count,3);
+                        $numList= array($position_1, $position_2, $position_3);
                         for ($i = 0; $i < 3; $i++) {
                             echo "<div class='number'> <h1> $numList[$i] </h1> </div>";
                         }
@@ -84,7 +86,7 @@
 
                 <div class="selection-area">
                     <input type ="hidden" class="selectNum" id="selectNum" placeholder="None"></input>
-                    <button class="checkBtn" id="checkBtn" onclick="checkNum($item_count)">CHECK</button>
+                    <button class="checkBtn" id="checkBtn" onclick="checkNum(<?php echo $item_count; ?>)">CHECK</button>
                     <!-- <button class="clearBtn" id="clearBtn" onclick="clearNum()">CLEAR</button> -->
                 </div>
             </div>    
@@ -123,7 +125,7 @@
             <div class="lives">
                 <i class="fa fa-heart" id= "heart1"></i>
                 <i class="fa fa-heart" id= "heart2"></i>
-                <i class="fa fa-heart" id= "heart3"></i>
+                <!-- <i class="fa fa-heart" id= "heart3"></i> -->
                 <!-- <div class="heart" id="heart1">
                     <div class="pluse"></div>
                 </div> -->
@@ -131,6 +133,13 @@
 
             <div class="message-box">
                 <h3>puzzelX</h3>
+                <h2>Hello, <?php echo $_SESSION['username']; ?>!</h2>
+            
+                <div id="message">
+                    <p id="message1"></p>
+                    <p id="message2"></p>
+                    
+                </div>
             </div>
 
             <div class="icon-bar">
