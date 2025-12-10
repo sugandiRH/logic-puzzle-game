@@ -302,6 +302,10 @@ body{
     color: red;
 }
 
+.lives i .lost{
+    color: grey;
+}
+
 /* AI modification Suggettion include */
 .show-level{
     margin-top: 20px;
