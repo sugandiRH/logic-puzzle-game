@@ -5,5 +5,5 @@ function leftClick(){
 }
 function rightClick(){
     btn.style.left = "110px";
-    // window.location.href = "countingGame_Hard.php";
+    window.location.href = "countingGame_Hard.php";
 }
