@@ -63,7 +63,7 @@ function checkNum(num){
             // Show popup after a short delay
             setTimeout(() => {
                 document.getElementById('popup').classList.add('active');
-            }, 1500);
+            }, 1000);
         }   
     }
     // let checkNum = document.getElementById('selectNum').value;
