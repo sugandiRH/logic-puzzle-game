@@ -48,7 +48,7 @@
 
             <button type="submit" class="btn">Register</button>
             <div class="login-link">
-                <p>Already have an account? <a href="../loging_page/loginPG.html">Sign In</a> </p>
+                <p>Already have an account? <a href="../loging_page/loginPG.php">Sign In</a> </p>
             </div>
 
         </form>

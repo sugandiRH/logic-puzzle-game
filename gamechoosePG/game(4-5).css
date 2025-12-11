@@ -7,6 +7,8 @@
     --accent-2: #08865c;
     --x-color: #ffffff;
     --x-edge: rgba(0,0,0,0.12);
+    --brown: #ba6343;
+    --dark-brown: #923917;
 }
 
 *{
@@ -20,58 +22,89 @@
 body{
   min-height: 100vh;
   display: flex;
-  justify-content: right;
-  align-items: center;
-  background: url('../assent/RegisterPG_image.jpg') no-repeat center center;
+  background: linear-gradient(180deg, var(--bg-top) 0%, #c6f0c9 30%, var(--bg-bottom) 100%);
+  /* background-image: url(../assent/RegisterPG_image.jpg); */
+  /* background-repeat: no-repeat;
   background-size: cover;
+  background-position: center; */
 }
+
+.wrapper{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.image-box{
+    display: flex;
+    flex-direction: column;
+    height: 95%;
+    width: 70%;
+    /* background-color: aqua; */
+}
+.image-box .title{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 5%;
+    margin-top: 2%;
+    height: auto;
+}
+
+.image-box .title h2{
+    font-size: 30px;
+    font-weight: 600;
+    /* background-color: #08865c; */
+    display: inline-block;
+    color: var(--brown);
+    /* text-shadow: 2px 2px 5px var(--dark-brown); */
+}
+
+.image-box .image{
+    /* margin-top: 5%; */
+    height: 85%;
+    width: 100%;
+    /* background-color: #08865c; */
+    background-image: url(../assent/baby_monster\(1\).png);
+    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
 
 .chooseBox{
   /* background-color: #08865c; */
-  height: 80%;
-  width: 30%;
+  height: 85%;
+  width: 26%;
   margin-right: 5%;
 }
 
-.chooseBox .counting{
-  /* display: flex; */
-  height: 50%;
-  width: 100%;
-  background-color: #0b87e0;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
+.chooseBox .counting,
 .chooseBox .mathOperation{
-  /* display: flex; */
+  display: flex;
+  flex-wrap: wrap;
   height: 50%;
   width: 100%;
-  background-color: #0be05d;
-}
-
-.chooseBox .game{
-  width: 80%;
-  height: 100%;
-  background-color: #f8f3b2; 
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  background-image: url(../assent/Wooden_sign.png);
+  background: url(../assent/Wooden_sign.png) no-repeat center center;
   background-size: cover;
+  justify-content: center;
+  align-items: center;
+  
 }
-.chooseBox .play{
-  width: 20%;
-  background-color: rgb(177, 204, 204);
+
+.board{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto;
+  text-align: center;
 }
 
-.chooseBox .play button{
+.chooseBox button{
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -86,9 +119,79 @@ body{
   justify-content: center;
 }
 
-.chooseBox .game h1{
-  font-size: 40px;
-  font-weight: 800;
+.chooseBox h1{
+  font-size: 50px;
+  font-weight: 900;
+  color: var(--dark-brown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  text-shadow: none;
+  transition: text-shadow 0.2s ease-in-out;
+  cursor: pointer;
 }
+
+.chooseBox a{
+    text-decoration: none;
+    color: inherit;
+}
+
+h1:hover {
+  color: var(--dark-brown);
+  transform: scale(1);
+  text-shadow: 2px 2px 5px var(--dark-brown); 
+}
+
+.side-bar{
+    height: 100%;
+    width: 5%;
+    /* background-color: blue; */
+    margin-right: 2%;
+}
+
+.side-bar .icon,
+.side-bar .logout{
+    margin-top: 25%;
+    height: 10%;
+    width: 100%;
+    /* height: 110px;
+    width: 110px; */
+    /* background-color: red; */
+    border: solid 2px var(--bg-top);
+    border-radius: 50%;
+}
+
+.side-bar .icon img,
+.side-bar .logout img{
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.side-bar .icon img:hover,
+.side-bar .logout img:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 50px #0FF6C8;
+}
+
+.side-bar .logout{
+    margin-top: 25%;
+    height: 10%;
+    width: 100%;
+    border: solid 2px var(--bg-top);
+    border-radius: 50%;
+}
+
+.side-bar .logout{
+    margin-top: 450px;
+}
+
+
+
 
 
