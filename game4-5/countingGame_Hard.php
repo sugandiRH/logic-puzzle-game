@@ -20,24 +20,44 @@
     $position_2 = '';
     $position_3 = '';
     $item_count = 0;
+    $wait_time = 0;
+    $current_time = time(); // ensure $current_time is always defined
     
-    $sql = "SELECT level from player_level WHERE user_id = $user_id AND game_name = 'counting_hard'";
+    $sql = "SELECT level, wait_time from player_level WHERE user_id = $user_id AND game_name = 'counting_hard'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
         $current_level = $row['level'];
+        // parse stored wait_time (fallback to 0 if parsing fails)
+        $wait_time = strtotime($row['wait_time']) ?: 0;
+        // echo $wait_time;
     }
 
-    $gameSQL = "SELECT * from gamelevel_hard WHERE level_number = $current_level";
-    $gameResult = mysqli_query($conn, $gameSQL);
-
-    if (mysqli_num_rows($gameResult) == 1) {
-        $gameRow = mysqli_fetch_assoc($gameResult);
-        $image_path = $gameRow['image_path'];
-        $item_count = $gameRow['item_count'];
-    } 
+    // Check wait time
+    // wait threshold 15 minutes = 900 seconds
+    $wait_threshold = 900;
+    if (($current_time - $wait_time) < $wait_threshold) {
+        // echo "Please wait for 15 minutes before trying again.";
+        // exit();
+        echo "<script>
+            window.onload = function() {
+                document.getElementById('popup').classList.add('active');
+            }
+          </script>";
+    }
     else{
-        echo "No game level found for level number: " . $current_level;
+
+        $gameSQL = "SELECT * from gamelevel_hard WHERE level_number = $current_level";
+        $gameResult = mysqli_query($conn, $gameSQL);
+
+        if (mysqli_num_rows($gameResult) == 1) {
+            $gameRow = mysqli_fetch_assoc($gameResult);
+            $image_path = $gameRow['image_path'];
+            $item_count = $gameRow['item_count'];
+        } 
+        else{
+            echo "No game level found for level number: " . $current_level;
+        }
     }
 ?>
 

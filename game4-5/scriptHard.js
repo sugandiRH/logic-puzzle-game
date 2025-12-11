@@ -32,20 +32,12 @@ document.querySelectorAll('.number').forEach(num => {
 function updateDisplay(){
     let display = Number(selected.join(''));
     document.getElementById('selectNum').value = display;
-
-    // alert(display)
-    // const display = document.getElementById('selectedNumbers');
-    // display.textContent = selected.length 
-    //     ? "Selected: " + selected.join("")
-    //     : "Selected: None";
 }
 
 
 let lost = 0;
 function checkNum(num){
     let checkNum = document.getElementById('selectNum').value;
-    // alert("You selected " + checkNum,"typeOf: " + typeof checkNum);
-    // alert("Correct number is " + num);
 
     if (checkNum == num & lost < 3){
         document.getElementById('message1').innerText = "Congratulations! <br> Keep Going!";
@@ -68,6 +60,8 @@ function checkNum(num){
                 });
                 
             } else if (lost==3){
+                // update table to wait 15 minites
+                updateTimer(); 
                 document.getElementById('message1').innerText = "OOps!";
                 document.getElementById('message2').innerText = " Game Over! No more lives ";
 
@@ -91,20 +85,8 @@ function clearNum(){
     document.querySelectorAll('.number').forEach(el => {
         el.classList.remove('selected');
     });
-    // alert(selected);
-    // window.location.reload();
 
 }
-// document.getElementById('checkBtn').addEventListener('click', () => {
-//     const display = document.getElementById('selectedNumbers');
-//     alert(display);
-    
-// });
-
-// document.getElementById('clearBtn').addEventListener('click', () => {
-//     // document.getElementById('selectNum') = "None";
-//     alert("hi");
-// });
 
 
 document.getElementById('backBtn').addEventListener('click', () => {
@@ -131,6 +113,26 @@ function goNextLevel() {
 
         // After updating, reload next level UI
        window.location.href = '../game4-5/countingGame_Hard.php';
+    })
+    .catch(error => console.error("Error:", error));
+}
+
+function updateTimer() {
+    // alert("called");
+    fetch("../updateTimer.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body:"game=counting_hard"
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log("PHP says:", data);
+
+        // After updating, reload next level UI
+    //    window.location.href = '../game4-5/countingGame_Hard.php';
+    // location.reload();
     })
     .catch(error => console.error("Error:", error));
 }
