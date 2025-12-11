@@ -32,11 +32,21 @@ document.querySelectorAll('.number').forEach(num => {
 function updateDisplay(){
     let display = Number(selected.join(''));
     document.getElementById('selectNum').value = display;
+
 }
 
+function clearNum(){
+    document.getElementById('selectNum').value = "";
+    selected = [];
+    document.querySelectorAll('.number').forEach(el => {
+        el.classList.remove('selected');
+    });
+
+}
 
 let lost = 0;
 function checkNum(num){
+    // alert("Checking number...");
     let checkNum = document.getElementById('selectNum').value;
 
     if (checkNum == num & lost < 3){
@@ -79,24 +89,13 @@ function checkNum(num){
     
 }
 
-function clearNum(){
-    document.getElementById('selectNum').value = "";
-    selected = [];
-    document.querySelectorAll('.number').forEach(el => {
-        el.classList.remove('selected');
-    });
-
-}
-
-
-document.getElementById('backBtn').addEventListener('click', () => {
-    // Go back to game selection
-    window.location.href = '../gamechoosePG/game(4-5).php';
-});
-
 // Close popup when overlay is clicked
 document.querySelector('.popup .overlay').addEventListener('click', () => {
     document.getElementById('popup').classList.remove('active');
+});
+
+document.getElementById('bananaGameBtn').addEventListener('click', () => {
+    window.location.href = '../bananaAPI/earnLife.php';
 });
 
 function goNextLevel() {
@@ -105,14 +104,14 @@ function goNextLevel() {
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        body:"game=counting_hard"
+        body:"game=math"
     })
     .then(response => response.text())
     .then(data => {
         console.log("PHP says:", data);
 
         // After updating, reload next level UI
-       window.location.href = '../game4-5/countingGame_Hard.php';
+       window.location.href = '../game8-12/gamePage.php';
     })
     .catch(error => console.error("Error:", error));
 }
@@ -124,13 +123,13 @@ function updateTimer() {
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        body:"game=counting_hard"
+        body:"game=math"
     })
     .then(response => response.text())
     .then(data => {
         console.log("PHP says:", data);
 
-        // After updating, reload next level UI
+
     //    window.location.href = '../game4-5/countingGame_Hard.php';
     // location.reload();
     })

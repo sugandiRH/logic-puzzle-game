@@ -1,5 +1,4 @@
 <?php include '../session_config.php'; ?>
-
 <?php
     if (!isset($_SESSION['username'])) {
         header("Location: ../loging_page/loginPG.php");
@@ -14,31 +13,24 @@
     
     // Initialize variables to prevent undefined errors
     $current_level = 1;
-    $image_count = 0;
     $image_path = '';
-    $position_1 = '';
-    $position_2 = '';
-    $position_3 = '';
-    $item_count = 0;
     $wait_time = 0;
-    $current_time = time(); // ensure $current_time is always defined
+    $current_time = time();
+    $num1 = '';
+    $num2 = '';
+    $operation = '';
+    $answer = '';
     
-    $sql = "SELECT level, wait_time from player_level WHERE user_id = $user_id AND game_name = 'counting_hard'";
+    $sql = "SELECT level, wait_time from player_level WHERE user_id = $user_id AND game_name = 'math'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
-        $current_level = $row['level'];
-        // parse stored wait_time (fallback to 0 if parsing fails)
         $wait_time = strtotime($row['wait_time']) ?: 0;
-        // echo $wait_time;
+        $current_level = $row['level'];
     }
 
-    // Check wait time
-    // wait threshold 15 minutes = 900 seconds
     $wait_threshold = 900;
     if (($current_time - $wait_time) < $wait_threshold) {
-        // echo "Please wait for 15 minutes before trying again.";
-        // exit();
         echo "<script>
             window.onload = function() {
                 document.getElementById('popup').classList.add('active');
@@ -46,14 +38,16 @@
           </script>";
     }
     else{
-
-        $gameSQL = "SELECT * from gamelevel_hard WHERE level_number = $current_level";
+        $gameSQL = "SELECT * from gamelevel_math WHERE level = $current_level";
         $gameResult = mysqli_query($conn, $gameSQL);
 
         if (mysqli_num_rows($gameResult) == 1) {
             $gameRow = mysqli_fetch_assoc($gameResult);
-            $image_path = $gameRow['image_path'];
-            $item_count = $gameRow['item_count'];
+            $num1 = $gameRow['num1'];
+            $num2 = $gameRow['num2'];
+            $operation = $gameRow['operetion'];
+            $answer = $gameRow['answer'];
+            
         } 
         else{
             echo "No game level found for level number: " . $current_level;
@@ -66,29 +60,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Age 4-5 Counting Game</title>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="gamePage.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=favorite" />
-    <link rel="stylesheet" href="age4-5.css">
-    <!-- <link rel="stylesheet" href="gameStyle.css"> -->
     
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="wrapper">
         <div class="wrap">
-
-            <!-- image cont -->
+            <label for="" id ="titleLable"></label>
             <div class="image-box">
-                <?php
-                    if ($item_count > 0) {
-                        // Loop to generate the specified number of divs
-                        for ($i = 1; $i <= $item_count; $i++) {
-                            echo "<div class='myDiv'> <img class='animated tada' src='$image_path'> </div>";
-                        }
-                    }
-                ?>
+                <!-- <img src="../assent/userIcon.jpg" alt=""> -->
+                <div>
+                    <div class="numDiv">
+                        <label for="" id="num1"><?php echo $num1; ?></label>
+                    </div>
+                    <div class="numDiv">
+                        <label for="" id="operation"><?php echo $operation; ?></label>
+                    </div>
+                    <div class="numDiv">
+                        <label for="" id="num2"><?php echo $num2; ?></label>
+                    </div>
+                </div>
             </div>
-
             <div class="board">
                 <div class="number-board">
                     <?php 
@@ -100,38 +96,20 @@
 
                 <div class="selection-area">
                     <div class="selectedNumbers" id="selectedNumbers">Selected: <input type ="text" class="selectNum" id="selectNum" placeholder="None"></input></div>
-                    <button class="checkBtn" id="checkBtn" onclick="checkNum(<?php echo $item_count; ?>)">CHECK</button>
+                    <button class="checkBtn" id="checkBtn" onclick="checkNum(<?php echo $answer; ?>)">CHECK</button>
                     <button class="clearBtn" id="clearBtn" onclick="clearNum()">CLEAR</button>
                 </div>
-            </div>    
-
+            </div>
         </div>
 
         <div class="side-bar">
-
-            <!-- <div class="icon-bar">
-                <div class="icon">
-                    <img src="../assent/userIcon.jpg" alt="">
-                </div>
-                <div class="icon">
-                    <img src="../assent/scoreBoardIcon.jpg" alt="">
-                </div>
-            </div> -->
-
-            <div class="mode-div">
-                <div class="button-box">
-                    <div id='btn' class="btn"></div>
-                    <button onclick="leftClick()" type="button" class="toggle-btn">Easy</button>
-                    <button onclick="rightClick()" type="button" class="toggle-btn">Hard</button>
-                </div>
-            </div>
 
             <div class="show-level">
                 <div class="emoji">
                     <img src="../assent/icon.png" alt="">
                 </div>
                 <div class="level">
-                    <p><?php echo $current_level ?><p>
+                    <p><?php echo $current_level; ?><p>
                 </div>
             </div>
 
@@ -139,9 +117,6 @@
                 <i class="fa fa-heart" id= "heart1"></i>
                 <i class="fa fa-heart" id= "heart2"></i>
                 <i class="fa fa-heart" id= "heart3"></i>
-                <!-- <div class="heart" id="heart1">
-                    <div class="pluse"></div>
-                </div> -->
             </div>
 
             <div class="message-box">
@@ -162,7 +137,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- this is for popup box -->
@@ -170,17 +144,16 @@
         <div class="overlay"></div>
         <div class="popup-content">
             <h2>It's Over!</h2>
-            <p>Try After 15 minute</p>
+            <p>Try After 15 minute or Play Banana Game</p>
             <img src="../assent/userIcon.jpg" alt="">
             <div class="button">
                 <!-- <button id="replayBtn">Replay</button> -->
-                <!-- <button id="nextLevelBtn">Next Level</button> -->
-                <button id="backBtn">Back</button>
+                <button id="bananaGameBtn">Banana Game</button>
+                <!-- <button id="backBtn">Back</button> -->
             </div>            
         </div>
      </div>
 
-    <script src="scriptHard.js"></script>
-    <script src="modeChange.js"></script>
+    <script src="gameMath.js"></script>
 </body>
 </html>

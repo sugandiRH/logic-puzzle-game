@@ -50,7 +50,10 @@ if (mysqli_num_rows($result) == 1) {
         $age = $user['age'];
         if ($age < 6) {
             header("Location: ../gamechoosePG/game(4-5).php");
-        } else
+        } 
+        elseif($age >=8 && $age <=12){
+            header("Location: ../game8-12/gamePage.php");
+        }else
         header("Location: ");
         
     } else {
