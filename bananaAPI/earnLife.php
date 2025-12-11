@@ -1,3 +1,12 @@
+<?php include '../session_config.php'; ?>
+
+<?php
+    if (!isset($_SESSION['username'])) {
+        header("Location: ../loging_page/loginPG.php");
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +18,9 @@
     <link rel="stylesheet" href="earnLife.css">
 </head>
 <body>
+    
     <div class="wrapper">
+
         <div class="wrap">
             <div class="image-box">
                 <img id="bananaPuzzle" src="" alt="Banana Puzzle">
@@ -42,8 +53,8 @@
             <p>You earn 3 life, back to play.</p>
             <img src="../assent/userIcon.jpg" alt="">
             <div class="button">
-                <button id="backBtn">Back</button>
-                <button id="playBtn">Play</button>
+                <!-- <button id="backBtn">Back</button> -->
+                <button id="playBtn">Let's Play</button>
             </div>            
         </div>
      </div>

@@ -80,18 +80,21 @@ function checkBanana() {
     }
 }
 
+// play again banana game
 document.getElementById('playAgainBtn').addEventListener('click', () => {
     document.getElementById('popupUnsuccess').classList.remove('active');
     loadBananaPuzzle();
 });
 
-document.getElementById('backBtn1').addEventListener('click', () => {
-    // Go back to game selection
-    window.location.href = '../gamechoosePG/game(4-5).php';
+// go back to math game page
+document.getElementById('playBtn').addEventListener('click', () => {
+    updateTimer();
+    window.location.href = "../game8-12/gamePage.php";
 });
-document.getElementById('backBtn').addEventListener('click', () => {
-    // Go back to game selection
-    window.location.href = '../gamechoosePG/game(4-5).php';
+
+// if go back
+document.getElementById('backBtn1').addEventListener('click', () => {
+    window.location.href = "../game8-12/gamePage.php";
 });
 
 // Close popup when overlay is clicked
@@ -102,3 +105,20 @@ document.querySelector('.popup .overlay').addEventListener('click', () => {
 document.querySelector('.popupUnsuccess .overlay1').addEventListener('click', () => {
     document.getElementById('popup').classList.remove('active');
 });
+
+// delete wait_time when user play banana game
+function updateTimer() {
+    // alert("called");
+    fetch("updateWaitTime.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body:"game=math"
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log("PHP says:", data);
+    })
+    .catch(error => console.error("Error:", error));
+}
