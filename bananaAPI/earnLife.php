@@ -34,6 +34,34 @@
         </div>
     </div>
 
+    <!-- this is for popup box - success -->
+     <div class="popup" id ="popup">
+        <div class="overlay"></div>
+        <div class="popup-content">
+            <h2>Congratulation!</h2>
+            <p>You earn 3 life, back to play.</p>
+            <img src="../assent/userIcon.jpg" alt="">
+            <div class="button">
+                <button id="backBtn">Back</button>
+                <button id="playBtn">Play</button>
+            </div>            
+        </div>
+     </div>
+
+     <!-- this is for popup box - unsuccess -->
+     <div class="popup" id ="popupUnsuccess">
+        <div class="overlay"></div>
+        <div class="popup-content">
+            <h2>oh!</h2>
+            <p id= "msg"></p>
+            <img src="../assent/userIcon.jpg" alt="">
+            <div class="button">
+                <button id="backBtn1">Back</button>
+                <button id="playAgainBtn">Play Again</button>
+            </div>            
+        </div>
+     </div>
+
     <script>
         async function loadBananaPuzzle() {
             const errNode = document.getElementById('bananaError');

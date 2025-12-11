@@ -43,15 +43,62 @@ function updateDisplay(){
     document.getElementById('selectNum').value = display;
 }
 
+let lost = 0;
 function checkBanana() {
     const selected = Number(document.getElementById('selectNum').value);
+    // if(isNaN(selected)){
+    //     alert("Please select a number first!");
+    //     return;
+    // }
     // alert("Selected: " + selected + ", Correct: " + window.correctAnswer);
 
     if (selected === window.correctAnswer) {
-        alert("Correct!");
+        setTimeout(() => {
+                document.getElementById('popup').classList.add('active');
+        }, 1000);
+        // alert("Correct!");
         // reload new puzzle
-        loadBananaPuzzle();
+        // loadBananaPuzzle();
     } else {
-        alert("Wrong! Try again.");
+        lost = lost + 1;
+        if (lost <= 1) {
+            // alert("Wrong! Try again.");
+            setTimeout(() => {
+                document.getElementById('msg').innerText = "Selected: " + selected + ", Correct: " + window.correctAnswer;
+                    document.getElementById('popupUnsuccess').classList.add('active');
+            }, 1000);
+            clearNum();
+        }
+        else{
+            setTimeout(() => {
+                document.getElementById('playAgainBtn').style.display = "none";
+                document.getElementById('msg').innerText = "Game Over! No more lives. Correct answer was: " + window.correctAnswer;
+                    document.getElementById('popupUnsuccess').classList.add('active');
+            }, 1000);
+            clearNum();        
+        }  
     }
 }
+
+document.getElementById('playAgainBtn').addEventListener('click', () => {
+    document.getElementById('popupUnsuccess').classList.remove('active');
+    loadBananaPuzzle();
+});
+
+document.getElementById('backBtn1').addEventListener('click', () => {
+    // Go back to game selection
+    window.location.href = '../gamechoosePG/game(4-5).php';
+});
+document.getElementById('backBtn').addEventListener('click', () => {
+    // Go back to game selection
+    window.location.href = '../gamechoosePG/game(4-5).php';
+});
+
+// Close popup when overlay is clicked
+document.querySelector('.popup .overlay').addEventListener('click', () => {
+    document.getElementById('popup').classList.remove('active');
+});
+
+document.querySelector('.popupUnsuccess .overlay1').addEventListener('click', () => {
+    document.getElementById('popup').classList.remove('active');
+});

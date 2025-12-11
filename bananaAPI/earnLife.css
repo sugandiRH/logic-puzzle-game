@@ -157,3 +157,83 @@ body{
     background: linear-gradient(145deg, #00e676, #00c853);
     /* transform: scale(1.2); */
 }
+
+/* popup box - youtube */
+
+.popup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+}
+
+.popup .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    opacity: 0;
+    transition: opacity 100ms ease-in-out 100ms;
+    pointer-events: none; 
+}
+
+.popup.active{
+    pointer-events: auto; 
+}
+
+.popup.active .overlay{
+    pointer-events: auto; 
+}
+
+.popup .popup-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.15);
+    background: #fff;
+    border-radius: 10px;
+    width: 400px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.33);
+    border-radius: 20px;
+    transition: all 300ms ease-in-out;
+
+    opacity: 0;
+    justify-content: center;
+    text-align: center;
+}
+
+.popup .popup-content button{
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background: #08865c;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup.active{
+    top: 0;
+    transition: all 0ms ease-in-out 0ms;
+}
+
+.popup.active .overlay{
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+}
+
+.popup.active .popup-content{
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+
+    
+
+}
