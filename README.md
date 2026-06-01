@@ -16,8 +16,11 @@ PuzzleX presents players with mathematical and logical puzzles that must be solv
 
 ## 🛠️ Technologies Used
   Frontend - HTML5, CSS3, JavaScript
+  
   Backend - PHP
+  
   Database - MySQL
+  
   Development Environment - XAMPP, VS Code
 
 ## 🎯 How to Play
